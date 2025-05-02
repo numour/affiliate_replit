@@ -100,16 +100,47 @@ export default async function handler(req, res) {
   try {
     console.log("Received affiliate registration request in Vercel");
     
-    // Validate request data
-    const validatedData = affiliateSchema.parse(req.body);
+    // Log request body to troubleshoot submission errors
+    console.log("Request body:", JSON.stringify(req.body));
+    
+    // Validate request data with more lenient validation for Instagram
+    // Instead of using schema directly, we'll modify the validation
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ message: "Invalid request format" });
+    }
+    
+    const { name, email, instagram, phone, address } = req.body;
+    
+    // Manual validation with better error handling
+    if (!name || name.length < 2) {
+      return res.status(400).json({ message: "Name is required and must be at least 2 characters" });
+    }
+    
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      return res.status(400).json({ message: "Valid email is required" });
+    }
+    
+    // Instagram validation - handle the @ symbol automatically if missing
+    let instagramHandle = instagram;
+    if (instagram && !instagram.startsWith('@')) {
+      instagramHandle = '@' + instagram;
+    }
+    
+    if (!phone || phone.length < 10) {
+      return res.status(400).json({ message: "Valid phone number is required" });
+    }
+    
+    if (!address || address.length < 5) {
+      return res.status(400).json({ message: "Valid address is required" });
+    }
     
     // Prepare payload for Google Sheets and emails
     const payload = {
-      name: validatedData.name,
-      instagram: validatedData.instagram,
-      phone: validatedData.phone,
-      email: validatedData.email,
-      address: validatedData.address,
+      name: name,
+      instagram: instagramHandle,
+      phone: phone,
+      email: email,
+      address: address,
       timestamp: new Date().toISOString()
     };
     
@@ -148,7 +179,7 @@ export default async function handler(req, res) {
     
     // Send welcome email to the new affiliate
     try {
-      await sendWelcomeEmail(validatedData.name, validatedData.email);
+      await sendWelcomeEmail(name, email);
     } catch (error) {
       console.error("Error sending welcome email");
     }
@@ -157,8 +188,8 @@ export default async function handler(req, res) {
     return res.status(201).json({
       message: "Affiliate registration successful",
       affiliate: {
-        name: validatedData.name,
-        email: validatedData.email
+        name: name,
+        email: email
       }
     });
   } catch (error) {
