@@ -1,0 +1,315 @@
+"TimeUTC","timestampInMs","requestPath","requestMethod","requestQueryString","responseStatusCode","requestId","requestUserAgent","level","environment","branch","vercelCache","type","function","host","deploymentDomain","deploymentId","durationMs","region","maxMemoryUsed","memorySize","message","projectId","traceId","sessionId"
+"2025-05-02 19:12:19",1746213139305,"affiliate-numour.vercel.app/favicon.ico","GET","",-1,"k4x9f-1746213139081-17ac9baf7f94","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:12:19",1746213139087,"affiliate-numour.vercel.app/favicon.ico","GET","",500,"k4x9f-1746213139081-17ac9baf7f94","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",202,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:12:18",1746213138942,"affiliate-numour.vercel.app/","GET","",-1,"k8ll5-1746213138490-fc0c67586a07","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:12:18",1746213138726,"affiliate-numour.vercel.app/","GET","",500,"k8ll5-1746213138490-fc0c67586a07","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",202,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:12:06",1746213126211,"affiliate-numour.vercel.app/favicon.ico","GET","",-1,"cb58q-1746213125723-eced6e8f2eb1","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:12:05",1746213125992,"affiliate-numour.vercel.app/favicon.ico","GET","",500,"cb58q-1746213125723-eced6e8f2eb1","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",203,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:12:05",1746213125582,"affiliate-numour.vercel.app/","GET","",-1,"x2gs4-1746213125106-ed9fa0cbaf43","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:12:05",1746213125344,"affiliate-numour.vercel.app/","GET","",500,"x2gs4-1746213125106-ed9fa0cbaf43","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",220,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:48",1746213048722,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.png","GET","",-1,"6t5jl-1746213048375-18cbe61aa013","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:48",1746213048502,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.png","GET","",500,"6t5jl-1746213048375-18cbe61aa013","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",206,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:46",1746213046221,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.png","GET","",-1,"827bs-1746213045876-491e508a5eb3","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:45",1746213045994,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.png","GET","",500,"827bs-1746213045876-491e508a5eb3","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",210,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:44",1746213044689,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.png","GET","",-1,"9m5cf-1746213044347-3e99a5fa6c22","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:44",1746213044473,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.png","GET","",500,"9m5cf-1746213044347-3e99a5fa6c22","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",201,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:44",1746213044219,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",-1,"6g7nb-1746213043871-92a7d3b312c2","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:43",1746213043990,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",500,"6g7nb-1746213043871-92a7d3b312c2","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",211,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:41",1746213041684,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",-1,"dbvpq-1746213041344-ab5619e1ec6d","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:41",1746213041466,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",500,"dbvpq-1746213041344-ab5619e1ec6d","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",201,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:40",1746213040182,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",-1,"5zncz-1746213039825-42f7c2b42992","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:39",1746213039959,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",500,"5zncz-1746213039825-42f7c2b42992","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",204,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:39",1746213039622,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",-1,"p9hmx-1746213039273-b6c5486d8c3a","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:39",1746213039396,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",500,"p9hmx-1746213039273-b6c5486d8c3a","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",211,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:38",1746213038087,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",-1,"khhzx-1746213037746-92028b8dbcdd","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:10:37",1746213037872,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",500,"khhzx-1746213037746-92028b8dbcdd","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",195,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:06:42",1746212802594,"affiliate-numour.vercel.app/favicon.ico","GET","",-1,"28bc8-1746212802091-6232754aacec","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:06:42",1746212802370,"affiliate-numour.vercel.app/favicon.ico","GET","",500,"28bc8-1746212802091-6232754aacec","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",210,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:06:41",1746212801548,"affiliate-numour.vercel.app/","GET","",-1,"svkpl-1746212800850-8c23c1074dda","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:06:41",1746212801323,"affiliate-numour.vercel.app/","GET","",500,"svkpl-1746212800850-8c23c1074dda","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour.vercel.app","affiliate-numour.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",210,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:54",1746212754942,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",-1,"2pdpw-1746212754486-1bbd85216f42","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:54",1746212754743,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",-1,"g9x7h-1746212754263-c8832847cbf3","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:54",1746212754720,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",500,"2pdpw-1746212754486-1bbd85216f42","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",208,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:54",1746212754490,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/favicon.ico","GET","",500,"g9x7h-1746212754263-c8832847cbf3","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",235,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:54",1746212754306,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",-1,"wvcv4-1746212753778-20a483bce8e5","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:54",1746212754055,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",-1,"xswv7-1746212753490-a8dc1206ade8","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:54",1746212754050,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",500,"wvcv4-1746212753778-20a483bce8e5","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",239,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:53",1746212753797,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",500,"xswv7-1746212753490-a8dc1206ade8","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",233,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:53",1746212753582,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",-1,"hk8qd-1746212752688-09370c022ad4","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:53",1746212753269,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",-1,"ftwkb-1746212752689-817f28010eb8","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",-1,"bom1",-1,-1,"Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/routes' imported from /var/task/api/index.js
+    at finalizeResolution (node:internal/modules/esm/resolve:281:11)
+    at moduleResolve (node:internal/modules/esm/resolve:866:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14)
+    at defaultResolve (node:internal/modules/esm/resolve:1033:79)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:685:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:634:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:617:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:273:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:135:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///var/task/server/routes'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:53",1746212753046,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",500,"hk8qd-1746212752688-09370c022ad4","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",251,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""
+"2025-05-02 19:05:53",1746212753045,"affiliate-numour-9n0o7x3wf-numours-projects.vercel.app/","GET","",500,"ftwkb-1746212752689-817f28010eb8","vercel-screenshot/1.0","error","production","main","MISS","lambda","/api/index.ts","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","affiliate-numour-9n0o7x3wf-numours-projects.vercel.app","dpl_7HxJhgoDYdFwb1kHujYUt9mewDMX",206,"bom1",77,1024,"","prj_1SbmgDzl7kJY05nzbL4TNTZxMgbH","",""

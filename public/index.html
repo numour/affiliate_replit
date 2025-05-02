@@ -59,7 +59,7 @@
 </head>
 <body>
   <div class="container">
-    <img src="/numour-logo.png" alt="Numour Logo" class="logo">
+    <img src="/numour-logo.svg" alt="Numour Logo" class="logo">
     <h1>Numour Affiliate Program</h1>
     
     <div class="message">
@@ -73,7 +73,7 @@
 
   <script>
     // Check if the API is working
-    fetch('/api/status')
+    fetch('/api/health')
       .then(response => response.json())
       .then(data => {
         console.log('API Status:', data);

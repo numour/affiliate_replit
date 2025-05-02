@@ -60,6 +60,7 @@
 </head>
 <body>
   <div class="container">
+    <img src="/numour-logo.svg" alt="Numour Logo" style="max-width: 200px; margin-bottom: 20px;">
     <h1>Numour Affiliate - Vercel Deployment Test</h1>
     <div class="status">
       <p>✅ Static files are being served correctly</p>
@@ -78,7 +79,7 @@
       <p>If you're seeing this page, it means the static content is being served correctly. If the API test fails, please check:</p>
       <ol>
         <li>Ensure all environment variables are set in Vercel</li>
-        <li>Verify the API handler (api/index.ts) is properly deployed</li>
+        <li>Verify the API handler (api/standalone.js) is properly deployed</li>
         <li>Check Vercel logs for any specific errors</li>
       </ol>
     </div>
@@ -94,7 +95,7 @@
       resultElement.innerHTML = "<p>Testing API connection...</p>";
       
       try {
-        const response = await fetch("/api/status");
+        const response = await fetch("/api/health");
         const data = await response.json();
         
         resultElement.innerHTML = `
