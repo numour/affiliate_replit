@@ -7,6 +7,7 @@ import fetch from "node-fetch";
 import { sendWelcomeEmail, sendBackupEmail } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server | null> {
+  // In Vercel's serverless environment, we don't need to create an HTTP server
   // Affiliate registration endpoint
   app.post("/api/affiliates", async (req, res) => {
     try {
@@ -152,6 +153,15 @@ export async function registerRoutes(app: Express): Promise<Server | null> {
     }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  // Handle different environments
+  if (process.env.VERCEL === "1") {
+    // In Vercel serverless environment, don't create a server
+    console.log("Running in Vercel serverless environment - not creating HTTP server");
+    return null;
+  } else {
+    // In development or other environments, create and return the server
+    console.log("Creating HTTP server for non-Vercel environment");
+    const httpServer = createServer(app);
+    return httpServer;
+  }
 }
