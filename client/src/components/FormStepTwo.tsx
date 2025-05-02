@@ -30,16 +30,16 @@ const FormStepTwo = ({ form, prevStep, isSubmitting }: FormStepTwoProps) => {
         control={form.control}
         name="phone"
         render={({ field }) => (
-          <FormItem className="relative group space-y-1">
-            <FormLabel className="absolute left-4 top-3 text-gray-500 pointer-events-none transition-all group-focus-within:transform group-focus-within:translate-y-[-1.5rem] group-focus-within:scale-85 group-focus-within:text-numourPurple">
+          <FormItem className="space-y-1">
+            <FormLabel className="text-gray-700 font-medium block mb-1">
               Contact Number
             </FormLabel>
             <FormControl>
               <Input
                 {...field}
                 type="tel"
-                placeholder=" "
-                className="w-full px-4 py-3 h-14 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
+                placeholder="Enter your phone number"
+                className="w-full px-4 py-3 h-12 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
               />
             </FormControl>
             <FormMessage />
@@ -51,16 +51,16 @@ const FormStepTwo = ({ form, prevStep, isSubmitting }: FormStepTwoProps) => {
         control={form.control}
         name="email"
         render={({ field }) => (
-          <FormItem className="relative group space-y-1">
-            <FormLabel className="absolute left-4 top-3 text-gray-500 pointer-events-none transition-all group-focus-within:transform group-focus-within:translate-y-[-1.5rem] group-focus-within:scale-85 group-focus-within:text-numourPurple">
+          <FormItem className="space-y-1">
+            <FormLabel className="text-gray-700 font-medium block mb-1">
               Email Address
             </FormLabel>
             <FormControl>
               <Input
                 {...field}
                 type="email"
-                placeholder=" "
-                className="w-full px-4 py-3 h-14 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
+                placeholder="Enter your email address"
+                className="w-full px-4 py-3 h-12 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
               />
             </FormControl>
             <FormMessage />
@@ -72,14 +72,14 @@ const FormStepTwo = ({ form, prevStep, isSubmitting }: FormStepTwoProps) => {
         control={form.control}
         name="address"
         render={({ field }) => (
-          <FormItem className="relative group space-y-1">
-            <FormLabel className="absolute left-4 top-3 text-gray-500 pointer-events-none transition-all group-focus-within:transform group-focus-within:translate-y-[-1.5rem] group-focus-within:scale-85 group-focus-within:text-numourPurple">
+          <FormItem className="space-y-1">
+            <FormLabel className="text-gray-700 font-medium block mb-1">
               Shipping Address
             </FormLabel>
             <FormControl>
               <Textarea
                 {...field}
-                placeholder=" "
+                placeholder="Enter your complete shipping address"
                 rows={3}
                 className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all resize-none"
               />
@@ -89,25 +89,27 @@ const FormStepTwo = ({ form, prevStep, isSubmitting }: FormStepTwoProps) => {
         )}
       />
       
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-8">
         <Button 
           type="button" 
           onClick={prevStep}
           variant="outline"
-          className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+          size="lg"
+          className="px-8 py-4 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 text-lg"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
+          <ArrowLeft className="mr-2 h-5 w-5" />
+          Back to Previous Step
         </Button>
         
         <Button 
           type="submit" 
           disabled={isSubmitting}
-          className="px-6 py-3 bg-numourPurple text-white rounded-lg font-medium hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-numourPurple disabled:opacity-70"
+          size="lg"
+          className="px-8 py-4 bg-numourPurple text-white rounded-lg font-medium hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-numourPurple disabled:opacity-70 text-lg"
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               Processing...
             </>
           ) : (

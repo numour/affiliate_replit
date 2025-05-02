@@ -28,15 +28,15 @@ const FormStepOne = ({ form, nextStep }: FormStepOneProps) => {
         control={form.control}
         name="name"
         render={({ field }) => (
-          <FormItem className="relative group space-y-1">
-            <FormLabel className="absolute left-4 top-3 text-gray-500 pointer-events-none transition-all group-focus-within:transform group-focus-within:translate-y-[-1.5rem] group-focus-within:scale-85 group-focus-within:text-numourPurple">
+          <FormItem className="space-y-1">
+            <FormLabel className="text-gray-700 font-medium block mb-1">
               Your Name
             </FormLabel>
             <FormControl>
               <Input
                 {...field}
-                placeholder=" "
-                className="w-full px-4 py-3 h-14 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
+                placeholder="Enter your full name"
+                className="w-full px-4 py-3 h-12 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
               />
             </FormControl>
             <FormMessage />
@@ -48,15 +48,15 @@ const FormStepOne = ({ form, nextStep }: FormStepOneProps) => {
         control={form.control}
         name="instagram"
         render={({ field }) => (
-          <FormItem className="relative group space-y-1">
-            <FormLabel className="absolute left-4 top-3 text-gray-500 pointer-events-none transition-all group-focus-within:transform group-focus-within:translate-y-[-1.5rem] group-focus-within:scale-85 group-focus-within:text-numourPurple">
+          <FormItem className="space-y-1">
+            <FormLabel className="text-gray-700 font-medium block mb-1">
               Instagram Handle (e.g. @username)
             </FormLabel>
             <FormControl>
               <Input
                 {...field}
-                placeholder=" "
-                className="w-full px-4 py-3 h-14 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
+                placeholder="Enter your Instagram handle"
+                className="w-full px-4 py-3 h-12 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-numourPurple focus:border-transparent transition-all"
               />
             </FormControl>
             <FormMessage />
@@ -64,14 +64,15 @@ const FormStepOne = ({ form, nextStep }: FormStepOneProps) => {
         )}
       />
       
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-8">
         <Button 
           type="button" 
           onClick={nextStep}
-          className="px-6 py-3 bg-numourPurple text-white rounded-lg font-medium hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-numourPurple"
+          size="lg"
+          className="px-8 py-4 bg-numourPurple text-white rounded-lg font-medium hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-numourPurple text-lg"
         >
-          Continue
-          <ArrowRight className="ml-2 h-4 w-4" />
+          Continue to Next Step
+          <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </div>
     </div>
