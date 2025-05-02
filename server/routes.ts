@@ -6,7 +6,7 @@ import { z } from "zod";
 import fetch from "node-fetch";
 import { sendWelcomeEmail, sendBackupEmail } from "./email";
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export async function registerRoutes(app: Express): Promise<Server | null> {
   // Affiliate registration endpoint
   app.post("/api/affiliates", async (req, res) => {
     try {

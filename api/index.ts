@@ -30,8 +30,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Register API routes
-(async () => {
+// Set up routes and error handling
+let isSetupComplete = false;
+
+// Initialize once
+async function setup() {
+  if (isSetupComplete) return;
+  
   try {
     await registerRoutes(app);
     
@@ -46,9 +51,18 @@ app.use((req, res, next) => {
       const message = err.message || "Internal Server Error";
       res.status(status).json({ message });
     });
+    
+    isSetupComplete = true;
   } catch (error) {
     console.error('Error setting up Express app:', error);
+    throw error;
   }
-})();
+}
 
-export default app;
+// Handler for Vercel serverless function
+const handler = async (req: any, res: any) => {
+  await setup();
+  return app(req, res);
+};
+
+export default handler;
