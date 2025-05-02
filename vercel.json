@@ -14,6 +14,10 @@
       "dest": "/verification.html"
     },
     {
+      "src": "/register",
+      "dest": "/affiliate-form.html"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
