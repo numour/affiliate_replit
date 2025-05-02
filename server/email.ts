@@ -2,14 +2,46 @@ import nodemailer from 'nodemailer';
 
 // Create email transporter function (create a new connection for each email)
 function createTransporter() {
+  // Handle possible special characters in password
+  const username = process.env.SMTP_USER || '';
+  const password = process.env.SMTP_PASS || '';
+  
+  console.log(`Using SMTP user: ${username}`);
+  // Don't log the actual password, just confirm we have one
+  console.log(`SMTP password provided: ${password ? 'Yes' : 'No'}`);
+  
+  // Some email providers might require different authentication methods
+  // Try different auth configurations based on the provider
+  let authConfig: any = {
+    user: username,
+    pass: password,
+  };
+  
+  // Determine if this is GoDaddy or other common providers
+  const host = process.env.SMTP_HOST || '';
+  if (host.includes('secureserver.net') || host.includes('godaddy')) {
+    console.log('Using GoDaddy SMTP configuration');
+    // GoDaddy sometimes requires XOAuth2 or specific settings
+    authConfig = {
+      user: username,
+      pass: password,
+      type: 'login',  // Try explicit login type for GoDaddy
+    };
+  } else if (host.includes('gmail')) {
+    console.log('Using Gmail SMTP configuration');
+    // Make sure Gmail is using the right auth type
+    authConfig = {
+      user: username,
+      pass: password,
+      type: 'login',  // For Gmail with app passwords
+    };
+  }
+  
   const smtpConfig = {
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT) || 587,
     secure: Number(process.env.SMTP_PORT) === 465, // True if port is 465 (SSL)
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
+    auth: authConfig,
     // Debug options
     debug: true, // Show debug output
     logger: true, // Log information to the console
@@ -17,7 +49,9 @@ function createTransporter() {
     tls: {
       // Do not fail on invalid certificates
       rejectUnauthorized: false
-    }
+    },
+    // Try another method if available
+    authMethod: 'PLAIN'
   };
   
   console.log('SMTP Configuration:', {
