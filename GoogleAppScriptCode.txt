@@ -1,0 +1,63 @@
+// Google Apps Script code for Google Sheets integration
+// Copy this entire code into your Google Apps Script editor
+
+function doPost(e) {
+  try {
+    // Parse the incoming data
+    var data = JSON.parse(e.postData.contents);
+    
+    // Get active spreadsheet and sheet
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = spreadsheet.getActiveSheet();
+    
+    // Add row with the data
+    sheet.appendRow([
+      data.name,
+      data.instagram,
+      data.phone,
+      data.email,
+      data.address,
+      data.timestamp || new Date().toISOString()
+    ]);
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'message': 'Data added successfully' }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    // Log the error
+    console.error('Error in doPost:', error);
+    
+    // Return error response
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'message': error.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Testing function you can run manually to verify the setup
+function testAppScript() {
+  // Create test data
+  var testData = {
+    name: "Test User",
+    instagram: "@test_user",
+    phone: "1234567890",
+    email: "test@example.com",
+    address: "123 Test Street, Test City",
+    timestamp: new Date().toISOString()
+  };
+  
+  // Create mock payload object
+  var mockPayload = {
+    postData: {
+      contents: JSON.stringify(testData)
+    }
+  };
+  
+  // Call doPost with the mock payload
+  var result = doPost(mockPayload);
+  
+  // Log the result
+  Logger.log("Test result: " + result.getContent());
+}
