@@ -108,5 +108,15 @@ app.get('/api/health', (_, res) => {
   res.status(200).json({ status: 'OK', environment: 'Vercel' });
 });
 
+// API health check to ensure deployment is working
+app.get('/api/status', (_, res) => {
+  res.status(200).json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    env: process.env.NODE_ENV || 'unknown',
+    vercel: process.env.VERCEL || 'not-vercel'
+  });
+});
+
 // Export default handler for Vercel
 export default app;
