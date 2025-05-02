@@ -134,7 +134,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // Create backup email payload
           const backupEmailPayload = {
             from: {
-              email: "hello@numour.com",
+              email: "noreply@mailersend.com", // Using default MailerSend domain that doesn't require verification
               name: "Numour Affiliates"
             },
             to: [
@@ -243,7 +243,7 @@ Submitted: ${payload.timestamp}
           // Create email payload with improved HTML design
           const emailPayload = {
             from: {
-              email: "hello@numour.com",
+              email: "noreply@mailersend.com", // Using default MailerSend domain that doesn't require verification
               name: "Numour Family"
             },
             to: [
