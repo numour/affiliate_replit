@@ -20,12 +20,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const affiliate = await storage.createAffiliate(validatedData);
       console.log("Affiliate created:", affiliate);
       
-      // Get API keys and settings needed for integration
+      // Get integration settings
       const googleWebhookUrl = process.env.GOOGLE_WEBHOOK_URL;
-      const emailJsUserId = process.env.EMAILJS_USER_ID;
       
       console.log("Google webhook URL exists:", !!googleWebhookUrl);
-      console.log("EmailJS user ID exists:", !!emailJsUserId);
       
       // Prepare the data payload (will be used for both Google Sheets and emails)
       const payload = {
@@ -98,13 +96,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.log("Google Sheets integration failed. Sending backup data email...");
         
         try {
-          // Send backup email using EmailJS
+          // Send backup email using SMTP
           const backupSuccess = await sendBackupEmail(payload);
           
           if (backupSuccess) {
             console.log("Backup data email sent successfully to hanselenterprise@gmail.com");
           } else {
-            console.error("Failed to send backup email via EmailJS");
+            console.error("Failed to send backup email via SMTP");
           }
         } catch (error) {
           console.error("Error sending backup data email:", error);
@@ -112,18 +110,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      // Send welcome email via EmailJS
+      // Send welcome email to the new affiliate
       console.log("Preparing welcome email for new affiliate...");
       try {
         console.log("Preparing to send welcome email to:", validatedData.email);
         
-        // Send welcome email using EmailJS
+        // Send welcome email using SMTP
         const welcomeEmailSuccess = await sendWelcomeEmail(validatedData.name, validatedData.email);
         
         if (welcomeEmailSuccess) {
           console.log("Welcome email sent successfully to", validatedData.email);
         } else {
-          console.error("Failed to send welcome email via EmailJS");
+          console.error("Failed to send welcome email via SMTP");
         }
       } catch (error) {
         console.error("Error sending welcome email:", error);
