@@ -1,15 +1,35 @@
 import nodemailer from 'nodemailer';
 
-// Create email transporter using SMTP
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: Number(process.env.SMTP_PORT) === 465, // True if port is 465 (SSL)
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+// Create email transporter function (create a new connection for each email)
+function createTransporter() {
+  const smtpConfig = {
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: Number(process.env.SMTP_PORT) === 465, // True if port is 465 (SSL)
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+    // Debug options
+    debug: true, // Show debug output
+    logger: true, // Log information to the console
+    // TLS configuration
+    tls: {
+      // Do not fail on invalid certificates
+      rejectUnauthorized: false
+    }
+  };
+  
+  console.log('SMTP Configuration:', {
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: Number(process.env.SMTP_PORT) === 465,
+    user: process.env.SMTP_USER ? '***User Provided***' : 'Missing',
+    pass: process.env.SMTP_PASS ? '***Password Provided***' : 'Missing',
+  });
+  
+  return nodemailer.createTransport(smtpConfig);
+}
 
 // Default from email address
 const defaultFromEmail = process.env.SMTP_FROM_EMAIL || 'noreply@numour.com';
@@ -28,6 +48,25 @@ export async function sendEmail(mailOptions: nodemailer.SendMailOptions): Promis
       mailOptions.from = `"Numour" <${defaultFromEmail}>`;
     }
     
+    // Create a new transporter for this email
+    const transporter = createTransporter();
+    
+    // Verify the transporter configuration
+    try {
+      const verification = await transporter.verify();
+      console.log('Transporter verification result:', verification);
+    } catch (verifyError) {
+      console.error('Transporter verification failed:', verifyError);
+      // Continue anyway - some servers don't support verification
+    }
+    
+    // Log the email we're attempting to send
+    console.log('Attempting to send email:', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject
+    });
+    
     // Send email
     const info = await transporter.sendMail(mailOptions);
     
@@ -35,6 +74,11 @@ export async function sendEmail(mailOptions: nodemailer.SendMailOptions): Promis
     return true;
   } catch (error) {
     console.error('Error sending email:', error);
+    if (error instanceof Error) {
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     return false;
   }
 }
