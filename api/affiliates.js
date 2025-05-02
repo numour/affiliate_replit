@@ -144,54 +144,59 @@ export default async function handler(req, res) {
       timestamp: new Date().toISOString()
     };
     
-    // Send to Google Sheets
-    let googleSheetsSuccess = false;
-    const googleWebhookUrl = process.env.GOOGLE_WEBHOOK_URL;
-    
-    if (googleWebhookUrl) {
-      try {
-        const response = await fetch(googleWebhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          redirect: "follow",
-          body: JSON.stringify(payload),
-        });
-        
-        if (response.ok) {
-          googleSheetsSuccess = true;
-        }
-      } catch (error) {
-        console.error("Error sending data to Google Sheets");
-      }
-    }
-    
-    // Send backup email if Google Sheets failed
-    if (!googleSheetsSuccess) {
-      try {
-        await sendBackupEmail(payload);
-      } catch (error) {
-        console.error("Error sending backup data email");
-      }
-    }
-    
-    // Send welcome email to the new affiliate
-    try {
-      await sendWelcomeEmail(name, email);
-    } catch (error) {
-      console.error("Error sending welcome email");
-    }
-    
-    // Return success response
-    return res.status(201).json({
+    // Return success response first to avoid timeout issues
+    // We'll use non-blocking operations to complete the rest of the process
+    const responseData = {
       message: "Affiliate registration successful",
       affiliate: {
         name: name,
         email: email
       }
-    });
+    };
+    
+    // Send response before continuing with potentially slow operations
+    res.status(201).json(responseData);
+    
+    // Continue processing in the background (non-blocking)
+    // These operations won't block the response
+    
+    // Send to Google Sheets (non-blocking)
+    const googleWebhookUrl = process.env.GOOGLE_WEBHOOK_URL;
+    let googleSheetsSuccess = false;
+    
+    if (googleWebhookUrl) {
+      fetch(googleWebhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        redirect: "follow",
+        body: JSON.stringify(payload),
+      })
+      .then(response => {
+        googleSheetsSuccess = response.ok;
+        // If Google Sheets failed, send backup email
+        if (!googleSheetsSuccess) {
+          return sendBackupEmail(payload);
+        }
+      })
+      .catch(error => {
+        console.error("Error sending data to Google Sheets:", error);
+        // Also send backup email on error
+        return sendBackupEmail(payload);
+      });
+    }
+    
+    // Send welcome email (non-blocking)
+    sendWelcomeEmail(name, email)
+      .catch(error => {
+        console.error("Error sending welcome email:", error);
+      });
+    
+    // Since we already sent the response, we'll return to end the function
+    return;
+
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({
