@@ -1,24 +1,17 @@
 // Vercel serverless function entry point
-import express from 'express';
-import { registerRoutes } from '../server/routes';
-import { serveStatic } from '../server/vite';
+import express, { Request, Response } from 'express';
 import { storage } from '../server/storage';
 import { insertAffiliateSchema } from '../shared/schema';
 import { sendWelcomeEmail, sendBackupEmail } from '../server/email';
 import { z } from 'zod';
 import fetch from 'node-fetch';
 
-// Create a simple Express app for Vercel serverless environment
+// Create Express handler for the serverless API
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
-// Tell the app we're running in Vercel
-process.env.VERCEL = "1";
-process.env.NODE_ENV = "production";
-
-// Set up the affiliate registration endpoint
-app.post("/api/affiliates", async (req, res) => {
+// API route handler for affiliate registration
+async function processAffiliateRegistration(req: Request, res: Response) {
   try {
     console.log("Received affiliate registration request in Vercel");
     
@@ -60,26 +53,17 @@ app.post("/api/affiliates", async (req, res) => {
           body: JSON.stringify(payload),
         });
         
-        // Get and log the response text
-        const responseData = await response.text();
-        
-        if (!response.ok) {
-          googleSheetsSuccess = false;
-        } else {
+        if (response.ok) {
           googleSheetsSuccess = true;
         }
       } catch (error) {
         console.error("Error sending data to Google Sheets");
-        googleSheetsSuccess = false;
       }
-    } else {
-      googleSheetsSuccess = false;
     }
     
     // 2. Send backup notification email when Google Sheets fails
     if (!googleSheetsSuccess) {
       try {
-        // Send backup email using SMTP
         await sendBackupEmail(payload);
       } catch (error) {
         console.error("Error sending backup data email");
@@ -88,7 +72,6 @@ app.post("/api/affiliates", async (req, res) => {
     
     // 3. Send welcome email to the new affiliate
     try {
-      // Send welcome email using SMTP
       await sendWelcomeEmail(validatedData.name, validatedData.email);
     } catch (error) {
       console.error("Error sending welcome email");
@@ -110,19 +93,20 @@ app.post("/api/affiliates", async (req, res) => {
         errors: error.errors,
       });
     }
+    console.error("Server error:", error);
     return res.status(500).json({
       message: "Internal server error",
     });
   }
+}
+
+// Configure route
+app.post('/api/affiliates', processAffiliateRegistration);
+
+// Simple health check for Vercel
+app.get('/api/health', (_, res) => {
+  res.status(200).json({ status: 'OK', environment: 'Vercel' });
 });
 
-// Serve static files
-serveStatic(app);
-
-// Default route to serve index
-app.get('*', (req, res) => {
-  res.sendFile('index.html', { root: './dist' });
-});
-
-// Export the Express app as the serverless function handler
+// Export default handler for Vercel
 export default app;
