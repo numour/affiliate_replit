@@ -20,11 +20,5 @@
     "NODE_ENV": "production",
     "VERCEL": "1"
   },
-  "regions": ["bom1"],
-  "functions": {
-    "api/index.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  "regions": ["bom1"]
 }
