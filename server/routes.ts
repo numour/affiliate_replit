@@ -21,32 +21,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Send data to Google Sheets via webhook if environment variable is provided
       const googleWebhookUrl = process.env.GOOGLE_WEBHOOK_URL;
+      console.log("Google webhook URL exists:", !!googleWebhookUrl);
+      
       if (googleWebhookUrl) {
         try {
-          console.log("Sending data to Google Sheets webhook at:", googleWebhookUrl);
+          // Prepare the data payload
+          const payload = {
+            name: validatedData.name,
+            instagram: validatedData.instagram,
+            phone: validatedData.phone,
+            email: validatedData.email,
+            address: validatedData.address,
+            timestamp: new Date().toISOString()
+          };
+          
+          console.log("Sending data to Google Sheets webhook:", JSON.stringify(payload));
+          console.log("Webhook URL:", googleWebhookUrl);
+          
+          // Send data to Google Sheets
           const response = await fetch(googleWebhookUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              "Accept": "application/json"
             },
-            body: JSON.stringify({
-              name: validatedData.name,
-              instagram: validatedData.instagram,
-              phone: validatedData.phone,
-              email: validatedData.email,
-              address: validatedData.address,
-              timestamp: new Date().toISOString()
-            }),
+            redirect: "follow",
+            body: JSON.stringify(payload),
           });
           
+          console.log("Google Sheets response status:", response.status);
+          console.log("Google Sheets response headers:", JSON.stringify(Object.fromEntries([...response.headers.entries()])));
+          
+          // Get and log the response text
           const responseData = await response.text();
-          console.log(`Google Sheets response (${response.status}):`, responseData);
+          console.log("Google Sheets response body:", responseData);
           
           if (!response.ok) {
-            console.error("Google Sheets webhook returned an error:", response.status, responseData);
+            console.error("Google Sheets webhook error details:", {
+              status: response.status,
+              statusText: response.statusText,
+              body: responseData
+            });
+          } else {
+            console.log("Successfully sent data to Google Sheets");
           }
         } catch (error) {
           console.error("Error sending data to Google Sheets:", error);
+          console.error("Error details:", error instanceof Error ? error.message : String(error));
+          console.error("Error stack:", error instanceof Error ? error.stack : "No stack trace");
           // Continue processing even if Google Sheets fails
         }
       } else {
