@@ -50,7 +50,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
           
           console.log("Google Sheets response status:", response.status);
-          console.log("Google Sheets response headers:", JSON.stringify(Object.fromEntries([...response.headers.entries()])));
+          const headersObj: Record<string, string> = {};
+          response.headers.forEach((value, key) => {
+            headersObj[key] = value;
+          });
+          console.log("Google Sheets response headers:", JSON.stringify(headersObj));
           
           // Get and log the response text
           const responseData = await response.text();
@@ -77,53 +81,135 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Send welcome email via MailerSend if API key is provided
       const mailerSendApiKey = process.env.MAILERSEND_API_KEY;
+      console.log("MailerSend API key exists:", !!mailerSendApiKey);
+      
       if (mailerSendApiKey) {
         try {
-          await fetch("https://api.mailersend.com/v1/email", {
+          console.log("Preparing to send welcome email to:", validatedData.email);
+          
+          // Create email payload with improved HTML design
+          const emailPayload = {
+            from: {
+              email: "hello@numour.com",
+              name: "Numour Family"
+            },
+            to: [
+              {
+                email: validatedData.email,
+                name: validatedData.name
+              }
+            ],
+            subject: "Welcome to the Numour Family! 💜",
+            text: `Hi ${validatedData.name},
+
+Welcome to the Numour family! We're so excited to have you join us on this journey.
+
+Here's what's next:
+- We'll review your application and get back to you soon
+- You'll receive your first Numour products to try
+- We'll set you up with your unique affiliate link
+
+Thank you for joining us as we redefine skincare in India!
+
+With love,
+The Numour Team`,
+            html: `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Numour</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f6ff; color: #333333;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(138, 99, 210, 0.1);">
+    <tr>
+      <td style="padding: 40px 30px 20px; text-align: center;">
+        <img src="https://i.ibb.co/JrKS2S9/Numour-Logo-No-BG.png" alt="Numour Logo" style="width: 180px; height: auto;">
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 10px 30px 30px;">
+        <h1 style="color: #8A63D2; font-size: 28px; margin: 0 0 20px; text-align: center;">Welcome to the Numour Family! 💜</h1>
+        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 15px;">Hi ${validatedData.name},</p>
+        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 20px;">We're so excited to welcome you to the Numour family! Thank you for joining us on this journey to redefine skincare in India.</p>
+        
+        <div style="background-color: #F2EBFD; padding: 25px; border-radius: 10px; margin: 25px 0;">
+          <h3 style="color: #8A63D2; margin: 0 0 15px; font-size: 20px;">Here's what's next:</h3>
+          <ul style="list-style-type: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+              <span style="color: #8A63D2; font-size: 20px; margin-right: 10px;">✨</span>
+              <span style="font-size: 16px;">We'll review your application and get back to you soon</span>
+            </li>
+            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+              <span style="color: #8A63D2; font-size: 20px; margin-right: 10px;">🌱</span>
+              <span style="font-size: 16px;">You'll receive your first Numour products to try</span>
+            </li>
+            <li style="display: flex; align-items: flex-start;">
+              <span style="color: #8A63D2; font-size: 20px; margin-right: 10px;">💌</span>
+              <span style="font-size: 16px;">We'll set you up with your unique affiliate link</span>
+            </li>
+          </ul>
+        </div>
+        
+        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 15px;">Thank you for joining us as we build something beautiful together!</p>
+        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 15px;">With love,<br>The Numour Team</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px 30px; background-color: #F2EBFD; text-align: center; border-top: 1px solid #D4C2F0;">
+        <p style="font-size: 12px; color: #666; margin: 0;">© ${new Date().getFullYear()} Numour. All rights reserved.</p>
+        <p style="font-size: 12px; color: #666; margin: 10px 0 0;">Made with 💜 in India</p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+          };
+          
+          console.log("Sending email request to MailerSend API");
+          
+          // Send email using MailerSend API
+          const response = await fetch("https://api.mailersend.com/v1/email", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${mailerSendApiKey}`,
               "X-Requested-With": "XMLHttpRequest",
             },
-            body: JSON.stringify({
-              from: {
-                email: "hello@numour.com",
-                name: "Numour Family"
-              },
-              to: [
-                {
-                  email: validatedData.email,
-                  name: validatedData.name
-                }
-              ],
-              subject: "Welcome to the Numour Family! 💜",
-              text: `Hi ${validatedData.name},\n\nWelcome to the Numour family! We're excited to have you join us on this journey.\n\nHere's what's next:\n- We'll review your application and get back to you soon\n- You'll receive your first Numour products to try\n- We'll set you up with your unique affiliate link\n\nThank you for joining us as we redefine skincare in India!\n\nWith love,\nThe Numour Team`,
-              html: `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-                      <img src="https://i.ibb.co/JrKS2S9/Numour-Logo-No-BG.png" alt="Numour Logo" style="width: 150px; margin-bottom: 20px;">
-                      <h1 style="color: #8A63D2;">Welcome to the Numour Family! 💜</h1>
-                      <p>Hi ${validatedData.name},</p>
-                      <p>We're so excited to welcome you to the Numour family! Thank you for joining us on this journey to redefine skincare in India.</p>
-                      <div style="background-color: #F2EBFD; padding: 15px; border-radius: 10px; margin: 20px 0;">
-                        <h3 style="color: #8A63D2; margin-top: 0;">Here's what's next:</h3>
-                        <ul style="list-style-type: none; padding-left: 0;">
-                          <li style="margin-bottom: 10px;">✨ We'll review your application and get back to you soon</li>
-                          <li style="margin-bottom: 10px;">🌱 You'll receive your first Numour products to try</li>
-                          <li style="margin-bottom: 10px;">💌 We'll set you up with your unique affiliate link</li>
-                        </ul>
-                      </div>
-                      <p>Thank you for joining us as we build something beautiful together!</p>
-                      <p>With love,<br>The Numour Team</p>
-                      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #D4C2F0; font-size: 12px; color: #666;">
-                        <p>© ${new Date().getFullYear()} Numour. All rights reserved.</p>
-                      </div>
-                    </div>`
-            }),
+            body: JSON.stringify(emailPayload),
           });
+          
+          const responseStatus = response.status;
+          console.log("MailerSend API response status:", responseStatus);
+          
+          const mailHeadersObj: Record<string, string> = {};
+          response.headers.forEach((value, key) => {
+            mailHeadersObj[key] = value;
+          });
+          console.log("MailerSend API response headers:", JSON.stringify(mailHeadersObj));
+          
+          // Parse and log response
+          const responseData = await response.text();
+          try {
+            const jsonData = JSON.parse(responseData);
+            console.log("MailerSend API response:", jsonData);
+            
+            if (response.ok) {
+              console.log("Welcome email sent successfully to", validatedData.email);
+            } else {
+              console.error("MailerSend API error:", jsonData);
+            }
+          } catch (e) {
+            console.log("MailerSend API raw response:", responseData);
+          }
+          
         } catch (error) {
           console.error("Error sending welcome email:", error);
+          console.error("Error details:", error instanceof Error ? error.message : String(error));
           // Continue processing even if email sending fails
         }
+      } else {
+        console.log("No MailerSend API key provided. Skipping email delivery.");
       }
       
       // Return success response
