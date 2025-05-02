@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import AffiliateForm from "@/components/AffiliateForm";
 import BenefitsList from "@/components/BenefitsList";
-import ProductCarousel from "@/components/ProductCarousel";
 import Footer from "@/components/Footer";
 import { createBlobs } from "@/lib/utils";
 
@@ -47,7 +46,6 @@ const Home = () => {
           <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8 animate-fade-in">
             <div className="space-y-6">
               <BenefitsList />
-              <ProductCarousel />
             </div>
           </div>
           
