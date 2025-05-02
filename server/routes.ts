@@ -23,17 +23,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const googleWebhookUrl = process.env.GOOGLE_WEBHOOK_URL;
       if (googleWebhookUrl) {
         try {
-          await fetch(googleWebhookUrl, {
+          console.log("Sending data to Google Sheets webhook at:", googleWebhookUrl);
+          const response = await fetch(googleWebhookUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(validatedData),
+            body: JSON.stringify({
+              name: validatedData.name,
+              instagram: validatedData.instagram,
+              phone: validatedData.phone,
+              email: validatedData.email,
+              address: validatedData.address,
+              timestamp: new Date().toISOString()
+            }),
           });
+          
+          const responseData = await response.text();
+          console.log(`Google Sheets response (${response.status}):`, responseData);
+          
+          if (!response.ok) {
+            console.error("Google Sheets webhook returned an error:", response.status, responseData);
+          }
         } catch (error) {
           console.error("Error sending data to Google Sheets:", error);
           // Continue processing even if Google Sheets fails
         }
+      } else {
+        console.log("No Google Sheets webhook URL provided. Skipping Google Sheets integration.");
       }
       
       // Send welcome email via MailerSend if API key is provided
