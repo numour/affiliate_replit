@@ -12,15 +12,35 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
-    method,
-    headers: data ? { "Content-Type": "application/json" } : {},
-    body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
-  });
+  try {
+    console.log(`Making ${method} request to ${url} with data:`, data);
+    
+    const res = await fetch(url, {
+      method,
+      headers: data ? { "Content-Type": "application/json" } : {},
+      body: data ? JSON.stringify(data) : undefined,
+      credentials: "include",
+    });
 
-  await throwIfResNotOk(res);
-  return res;
+    // Log response details for debugging
+    console.log(`Server response status: ${res.status}`);
+    
+    // Clone the response before throwing to avoid "body already used" errors
+    const resClone = res.clone();
+    
+    try {
+      const responseText = await resClone.text();
+      console.log("Response body:", responseText);
+    } catch (e) {
+      console.log("Could not read response body:", e);
+    }
+    
+    await throwIfResNotOk(res);
+    return res;
+  } catch (error) {
+    console.error("API request error:", error);
+    throw error;
+  }
 }
 
 type UnauthorizedBehavior = "returnNull" | "throw";

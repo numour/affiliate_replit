@@ -9,11 +9,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Affiliate registration endpoint
   app.post("/api/affiliates", async (req, res) => {
     try {
+      console.log("Received affiliate registration request:", req.body);
+      
       // Validate the request body against our schema
       const validatedData = insertAffiliateSchema.parse(req.body);
+      console.log("Validated data:", validatedData);
       
       // Save the affiliate data to the storage
       const affiliate = await storage.createAffiliate(validatedData);
+      console.log("Affiliate created:", affiliate);
       
       // Send data to Google Sheets via webhook if environment variable is provided
       const googleWebhookUrl = process.env.GOOGLE_WEBHOOK_URL;

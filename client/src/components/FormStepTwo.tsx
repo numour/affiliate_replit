@@ -105,7 +105,7 @@ const FormStepTwo = ({ form, prevStep, isSubmitting }: FormStepTwoProps) => {
           type="submit" 
           disabled={isSubmitting}
           size="lg"
-          className="px-8 py-4 bg-numourPurple text-white rounded-lg font-medium hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-numourPurple disabled:opacity-70 text-lg"
+          className="px-8 py-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 disabled:opacity-70 text-lg"
         >
           {isSubmitting ? (
             <>
