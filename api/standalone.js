@@ -36,11 +36,23 @@ async function sendEmail(options) {
       },
       tls: {
         rejectUnauthorized: false
-      }
+      },
+      // Add debugging
+      logger: true,
+      debug: true
+    });
+    
+    // Log SMTP config (without sensitive data)
+    console.log('SMTP Config:', {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      user: process.env.SMTP_USER,
+      fromEmail: process.env.SMTP_FROM_EMAIL
     });
     
     // Send email
-    await transporter.sendMail(options);
+    const info = await transporter.sendMail(options);
+    console.log('Email sent successfully:', info.messageId);
     return true;
   } catch (error) {
     console.error('Email sending error:', error);

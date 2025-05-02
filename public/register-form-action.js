@@ -1,4 +1,4 @@
-// Simple AJAX submission handler for the static affiliate form
+// AJAX submission handler for the static affiliate form
 document.addEventListener('DOMContentLoaded', function() {
   const formStepTwo = document.getElementById('form-step-two');
   
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         timestamp: new Date().toISOString()
       };
       
-      // Direct Google Sheets submission and email sending via fetch to avoid Vercel timeout
+      // Direct Google Sheets submission and email sending via SMTP
       Promise.all([
         // 1. Submit to Google Sheets webhook directly
         fetch(googleWebhookUrl, {
@@ -38,42 +38,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }).catch(error => {
           console.error("Google Sheets error:", error);
           
-          // Send backup email
-          return fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          // Send backup email using our API
+          return fetch('/api/direct-smtp', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              service_id: emailjsServiceId,
-              template_id: emailjsBackupTemplateId,
-              user_id: emailjsUserId,
-              template_params: {
-                name: formData.name,
-                email: formData.email,
-                instagram: formData.instagram,
-                phone: formData.phone,
-                address: formData.address,
-                timestamp: formData.timestamp
-              }
+              action: 'backup',
+              data: formData
             })
           });
         }),
         
-        // 2. Send welcome email via EmailJS directly
-        fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        // 2. Send welcome email using our API
+        fetch('/api/direct-smtp', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            service_id: emailjsServiceId,
-            template_id: emailjsTemplateId,
-            user_id: emailjsUserId,
-            template_params: {
+            action: 'welcome',
+            data: {
               name: formData.name,
-              email: formData.email,
-              to_email: formData.email
+              email: formData.email
             }
           })
         })
