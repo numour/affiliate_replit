@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0;URL='/register'" />
   <title>Numour Affiliate Program</title>
   <style>
     body {
@@ -82,6 +83,11 @@
       .catch(error => {
         console.error('API Error:', error);
       });
+      
+    // Immediate redirect to /register for root path
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+      window.location.href = '/register';
+    }
   </script>
 </body>
 </html>
