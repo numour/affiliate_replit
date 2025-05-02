@@ -28,26 +28,47 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Direct Google Sheets submission and email sending via SMTP
       Promise.all([
-        // 1. Submit to Google Sheets webhook directly
-        fetch(googleWebhookUrl, {
+        // 1. Try our Google Sheets API endpoint first 
+        fetch('/api/google-sheets', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(formData)
-        }).catch(error => {
-          console.error("Google Sheets error:", error);
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Google Sheets API failed');
+          }
+          return response.json();
+        })
+        .catch(error => {
+          console.error("Google Sheets API error:", error);
           
-          // Send backup email using our API
-          return fetch('/api/direct-smtp', {
+          // If that fails, try the direct webhook as fallback
+          return fetch(googleWebhookUrl, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
             },
-            body: JSON.stringify({
-              action: 'backup',
-              data: formData
-            })
+            redirect: 'follow',
+            mode: 'no-cors', // Bypass CORS issues  
+            body: JSON.stringify(formData)
+          }).catch(secondError => {
+            console.error("Direct Google Sheets error:", secondError);
+            
+            // If both fail, send backup email
+            return fetch('/api/direct-smtp', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                action: 'backup',
+                data: formData
+              })
+            });
           });
         }),
         

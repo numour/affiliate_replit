@@ -1,0 +1,43 @@
+// This is a sample of what the Google Apps Script code typically looks like
+// The Google Webhook is expecting data in a specific format
+
+function doPost(e) {
+  try {
+    // Parse the incoming JSON data
+    var data = JSON.parse(e.postData.contents);
+    
+    // Get the active spreadsheet and sheet
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName("Affiliates") || ss.getSheets()[0];
+    
+    // Get timestamp
+    var timestamp = data.timestamp || new Date().toISOString();
+    
+    // Append the data to the sheet
+    sheet.appendRow([
+      timestamp,
+      data.name,
+      data.email,
+      data.instagram,
+      data.phone,
+      data.address
+    ]);
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        result: "success",
+        data: data
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch(error) {
+    // Return error response
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        result: "error",
+        error: error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
