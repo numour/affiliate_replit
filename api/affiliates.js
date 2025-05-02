@@ -165,6 +165,9 @@ export default async function handler(req, res) {
     let googleSheetsSuccess = false;
     
     if (googleWebhookUrl) {
+      console.log("Sending data to Google Sheets webhook:", googleWebhookUrl);
+      
+      // Attempt to send data to Google Sheets
       fetch(googleWebhookUrl, {
         method: "POST",
         headers: {
@@ -175,10 +178,21 @@ export default async function handler(req, res) {
         body: JSON.stringify(payload),
       })
       .then(response => {
+        console.log("Google Sheets response status:", response.status);
         googleSheetsSuccess = response.ok;
+        
         // If Google Sheets failed, send backup email
         if (!googleSheetsSuccess) {
-          return sendBackupEmail(payload);
+          console.error("Google Sheets submission failed with status:", response.status);
+          return response.text().then(text => {
+            console.error("Google Sheets error response:", text);
+            return sendBackupEmail(payload);
+          });
+        } else {
+          console.log("Successfully submitted to Google Sheets");
+          return response.text().then(text => {
+            console.log("Google Sheets response:", text);
+          });
         }
       })
       .catch(error => {

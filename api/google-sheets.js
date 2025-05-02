@@ -37,14 +37,17 @@ export default async function handler(req, res) {
 
     console.log('Submitting to Google Sheets:', JSON.stringify(formData));
 
-    // Submit to Google Sheets
+    // Submit to Google Sheets with more robust configuration
     const response = await fetch(googleWebhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'User-Agent': 'Numour-Affiliate-App'
       },
       redirect: 'follow',
+      // Extend timeout for slow connections
+      timeout: 8000,
       body: JSON.stringify(formData),
     });
 
