@@ -6,6 +6,7 @@ function App() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/register" component={Home} />
       <Route component={NotFound} />
     </Switch>
   );
