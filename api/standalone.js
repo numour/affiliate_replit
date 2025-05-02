@@ -105,76 +105,103 @@ app.post('/api/affiliates', async (req, res) => {
   try {
     console.log("Received affiliate registration request in Vercel");
     
-    // Validate request data
-    const validatedData = affiliateSchema.parse(req.body);
+    // Log request body to troubleshoot submission errors
+    console.log("Request body:", JSON.stringify(req.body));
+    
+    // Validate request data with more lenient validation
+    // Instead of using schema directly, we'll modify the validation
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ message: "Invalid request format" });
+    }
+    
+    const { name, email, instagram, phone, address } = req.body;
+    
+    // Manual validation with better error handling
+    if (!name || name.length < 2) {
+      return res.status(400).json({ message: "Name is required and must be at least 2 characters" });
+    }
+    
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      return res.status(400).json({ message: "Valid email is required" });
+    }
+    
+    // Instagram validation - handle the @ symbol automatically if missing
+    let instagramHandle = instagram;
+    if (instagram && !instagram.startsWith('@')) {
+      instagramHandle = '@' + instagram;
+    }
+    
+    if (!phone || phone.length < 10) {
+      return res.status(400).json({ message: "Valid phone number is required" });
+    }
+    
+    if (!address || address.length < 5) {
+      return res.status(400).json({ message: "Valid address is required" });
+    }
     
     // Create affiliate (in memory only)
     const affiliateId = affiliateCounter++;
-    const affiliate = {
-      id: affiliateId,
-      ...validatedData,
-      createdAt: new Date()
-    };
     
     // Prepare payload for Google Sheets and emails
     const payload = {
-      name: validatedData.name,
-      instagram: validatedData.instagram,
-      phone: validatedData.phone,
-      email: validatedData.email,
-      address: validatedData.address,
+      name: name,
+      instagram: instagramHandle,
+      phone: phone,
+      email: email,
+      address: address,
       timestamp: new Date().toISOString()
     };
     
-    // Send to Google Sheets
-    let googleSheetsSuccess = false;
+    // Return success response first to avoid timeout issues
+    const responseData = {
+      message: "Affiliate registration successful",
+      affiliate: {
+        id: affiliateId,
+        name: name,
+        email: email
+      }
+    };
+    
+    // Send response immediately to avoid Vercel timeout
+    res.status(201).json(responseData);
+    
+    // Continue with background processing (non-blocking)
+    
+    // Send to Google Sheets (non-blocking)
     const googleWebhookUrl = process.env.GOOGLE_WEBHOOK_URL;
     
     if (googleWebhookUrl) {
-      try {
-        const response = await fetch(googleWebhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          redirect: "follow",
-          body: JSON.stringify(payload),
-        });
-        
-        if (response.ok) {
-          googleSheetsSuccess = true;
+      fetch(googleWebhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        redirect: "follow",
+        body: JSON.stringify(payload),
+      })
+      .then(response => {
+        const googleSheetsSuccess = response.ok;
+        // If Google Sheets failed, send backup email
+        if (!googleSheetsSuccess) {
+          return sendBackupEmail(payload);
         }
-      } catch (error) {
-        console.error("Error sending data to Google Sheets");
-      }
+      })
+      .catch(error => {
+        console.error("Error sending data to Google Sheets:", error);
+        // Also send backup email on error
+        return sendBackupEmail(payload);
+      });
     }
     
-    // Send backup email if Google Sheets failed
-    if (!googleSheetsSuccess) {
-      try {
-        await sendBackupEmail(payload);
-      } catch (error) {
-        console.error("Error sending backup data email");
-      }
-    }
-    
-    // Send welcome email to the new affiliate
-    try {
-      await sendWelcomeEmail(validatedData.name, validatedData.email);
-    } catch (error) {
-      console.error("Error sending welcome email");
-    }
-    
-    // Return success response
-    return res.status(201).json({
-      message: "Affiliate registration successful",
-      affiliate: {
-        id: affiliate.id,
-        name: affiliate.name,
-        email: affiliate.email
-      }
-    });
+    // Send welcome email (non-blocking)
+    sendWelcomeEmail(name, email)
+      .catch(error => {
+        console.error("Error sending welcome email:", error);
+      });
+      
+    // We've already sent the response, so no need to return anything here
+    return;
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({
