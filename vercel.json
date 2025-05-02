@@ -6,12 +6,8 @@
       "use": "@vercel/node"
     },
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/public",
-        "buildCommand": "./vercel-build.sh"
-      }
+      "src": "public/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -21,11 +17,7 @@
     },
     {
       "src": "/verify",
-      "dest": "/verify.html"
-    },
-    {
-      "src": "/(.*\\.(js|css|svg|png|jpg|jpeg|gif|ico|json|woff|woff2|ttf|otf))",
-      "dest": "/$1"
+      "dest": "/verification.html"
     },
     {
       "src": "/(.*)",

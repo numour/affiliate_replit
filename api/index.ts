@@ -1,10 +1,111 @@
-// Vercel serverless function entry point
+// Vercel serverless function entry point - Standalone handler for Vercel deployment
 import express, { Request, Response } from 'express';
-import { storage } from '../server/storage';
-import { insertAffiliateSchema } from '../shared/schema';
-import { sendWelcomeEmail, sendBackupEmail } from '../server/email';
 import { z } from 'zod';
 import fetch from 'node-fetch';
+import nodemailer from 'nodemailer';
+
+// Simplified schema implementation for Vercel
+const insertAffiliateSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  instagram: z.string(),
+  phone: z.string(),
+  address: z.string()
+});
+
+// Simple in-memory storage implementation for serverless
+class VercelStorage {
+  private affiliateId = 1;
+
+  async createAffiliate(data: z.infer<typeof insertAffiliateSchema>) {
+    const id = this.affiliateId++;
+    return {
+      id,
+      ...data,
+      createdAt: new Date()
+    };
+  }
+}
+
+const storage = new VercelStorage();
+
+// Email sending functionality
+async function sendEmail(options: nodemailer.SendMailOptions): Promise<boolean> {
+  try {
+    // Create transporter with SMTP settings
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || '',
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER || '',
+        pass: process.env.SMTP_PASS || ''
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+    
+    // Send email
+    await transporter.sendMail(options);
+    return true;
+  } catch (error) {
+    console.error('Email sending error:', error);
+    return false;
+  }
+}
+
+// Send welcome email function
+async function sendWelcomeEmail(name: string, email: string): Promise<boolean> {
+  const fromEmail = process.env.SMTP_FROM_EMAIL || 'noreply@numour.com';
+  
+  const mailOptions = {
+    from: `"Numour Family" <${fromEmail}>`,
+    to: email,
+    subject: 'Welcome to the Numour Family! 🎉',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+        <h2 style="color: #6a4c93;">Welcome to the Numour Family! 🎉</h2>
+        <p>Hello ${name},</p>
+        <p>We're thrilled to have you join our affiliate program! Your application has been successfully registered.</p>
+        <p>Our team will review your information and get back to you shortly with the next steps.</p>
+        <p>In the meantime, feel free to explore our product range and get familiar with what we offer.</p>
+        <p>Best regards,<br>The Numour Team</p>
+      </div>
+    `
+  };
+  
+  return await sendEmail(mailOptions);
+}
+
+// Send backup email function
+async function sendBackupEmail(data: any): Promise<boolean> {
+  const fromEmail = process.env.SMTP_FROM_EMAIL || 'noreply@numour.com';
+  
+  const mailOptions = {
+    from: `"Numour Affiliate System" <${fromEmail}>`,
+    to: 'hanselenterprise@gmail.com',
+    subject: 'BACKUP: New Affiliate Registration Data',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+        <h2 style="color: #d9534f;">Backup Notification: Google Sheets Integration Failed</h2>
+        <p>The system failed to send data to Google Sheets. Please manually add this affiliate to your records.</p>
+        <h3>Affiliate Data:</h3>
+        <ul>
+          <li><strong>Name:</strong> ${data.name}</li>
+          <li><strong>Instagram:</strong> ${data.instagram}</li>
+          <li><strong>Phone:</strong> ${data.phone}</li>
+          <li><strong>Email:</strong> ${data.email}</li>
+          <li><strong>Address:</strong> ${data.address}</li>
+          <li><strong>Timestamp:</strong> ${data.timestamp}</li>
+        </ul>
+        <p>Please add this information to your Google Sheets manually.</p>
+      </div>
+    `
+  };
+  
+  return await sendEmail(mailOptions);
+}
 
 // Create Express handler for the serverless API
 const app = express();
