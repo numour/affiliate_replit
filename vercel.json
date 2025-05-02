@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "./vercel-build.sh",
+  "outputDirectory": "public",
   "functions": {
     "api/*.js": {
       "memory": 1024,

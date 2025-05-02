@@ -1,59 +1,40 @@
-# Vercel Deployment Configuration - Changes Summary
+# Vercel Deployment Changes Summary
 
-## Files Created/Modified for Vercel Deployment
+## Deployment Structure
+- **API Functions**: Using standalone JavaScript files in the `/api` folder
+- **Static Content**: HTML, CSS, and assets in the `/public` folder
+- **Build Process**: Bypassed traditional build process with a custom script
 
-1. `vercel.json` - Main configuration file for Vercel deployment
-   - Defines build settings
-   - Sets up routing rules
-   - Configures serverless function options
-   - Specifies Mumbai region for optimal performance in India
+## Key Files
+- `/api/health.js` - Health check endpoint
+- `/api/index.js` - Default API route
+- `/api/affiliates.js` - Affiliate registration handler
+- `/public/index.html` - Main landing page
+- `/public/verification.html` - Deployment verification page
+- `/vercel.json` - Deployment configuration
+- `/vercel-build.sh` - Custom build script
 
-2. `api/index.ts` - Vercel serverless function entry point
-   - Creates Express app for Vercel serverless environment
-   - Sets up middleware and API routes
-   - Handles static file serving in production
+## How It Works
+1. The API endpoints are implemented as individual serverless functions
+2. Each function is completely self-contained with no external dependencies
+3. Static files are served directly from the `/public` directory
+4. The build process is intentionally bypassed to avoid Node.js compilation issues
 
-3. `tsconfig.vercel.json` - TypeScript configuration for Vercel
-   - Optimized settings for Vercel's build system
-   - Includes necessary files for API functionality
+## Verification Process
+1. After deployment, visit `/verify` to check if static files are being served
+2. Click "Test API" to verify API health check is working
+3. If both work, the full application should be functioning correctly
 
-4. `server/index.ts` (modified) - Updated server code
-   - Added Vercel-specific conditional logic
-   - Added export for serverless function support
-   - Modified server startup behavior for different environments
+## Troubleshooting
+If deployment fails:
+1. Check Vercel logs for specific error messages
+2. Confirm environment variables are set correctly
+3. Verify file paths in vercel.json match actual file structure
 
-5. `.vercel-env.example` - Template for environment variables
-   - Lists all required environment variables for Vercel
-
-6. `VERCEL_DEPLOY.md` - Comprehensive deployment guide
-   - Step-by-step instructions for Vercel deployment
-   - Troubleshooting common issues
-   - Environment variable setup guide
-   - Security recommendations
-
-## Key Configuration Changes
-
-### Server Modifications
-- Made the server code compatible with both traditional hosting and Vercel's serverless environment
-- Added conditional logic to detect Vercel environment
-- Exported the Express app for serverless function use
-
-### Build Process
-- Using the existing build command: `npm run build`
-- Build process creates optimized assets in the `dist` directory
-
-### Environment Variables
-- All required environment variables are listed in `.vercel-env.example`
-- Critical variables must be configured in Vercel's dashboard
-
-### Route Configuration
-- All routes are mapped through the serverless function
-- API routes are handled by the Express application
-
-## Next Steps
-
-1. Push this code to GitHub
-2. Connect your GitHub repository to Vercel
-3. Configure environment variables in Vercel dashboard
-4. Deploy the application
-5. Verify functionality after deployment
+## Environment Variables Required
+- `SMTP_HOST` - SMTP server hostname
+- `SMTP_PORT` - SMTP server port
+- `SMTP_USER` - SMTP username
+- `SMTP_PASS` - SMTP password
+- `SMTP_FROM_EMAIL` - Sender email address
+- `GOOGLE_WEBHOOK_URL` - Google Sheets integration webhook
