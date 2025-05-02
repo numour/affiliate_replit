@@ -61,10 +61,12 @@ const AffiliateForm = () => {
     // Validate only the fields in the current step
     if (currentStep === 1) {
       const result = await form.trigger(["name", "instagram"]);
+      console.log("Form validation result:", result);
       if (result) {
         setCurrentStep(2);
       }
     }
+    console.log("nextStep function called, current step:", currentStep);
   };
 
   const prevStep = () => {

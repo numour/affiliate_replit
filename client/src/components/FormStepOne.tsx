@@ -64,15 +64,17 @@ const FormStepOne = ({ form, nextStep }: FormStepOneProps) => {
         )}
       />
       
-      <div className="flex justify-end mt-8">
+      <div className="flex justify-center mt-12 mb-4">
         <Button 
           type="button" 
-          onClick={nextStep}
-          size="lg"
-          className="px-8 py-4 bg-numourPurple text-white rounded-lg font-medium hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-numourPurple text-lg"
+          onClick={() => {
+            console.log("Continue button clicked");
+            nextStep();
+          }}
+          className="w-full sm:w-auto px-8 py-6 bg-numourPurple text-white rounded-xl font-bold hover:bg-opacity-90 transition-all focus:outline-none focus:ring-4 focus:ring-purple-300 text-xl shadow-lg"
         >
           Continue to Next Step
-          <ArrowRight className="ml-2 h-5 w-5" />
+          <ArrowRight className="ml-2 h-6 w-6" />
         </Button>
       </div>
     </div>
