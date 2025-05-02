@@ -52,19 +52,34 @@ app.use((req, res, next) => {
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
     await setupVite(app, server);
+    
+    // In development, start the server on port 5000
+    const port = process.env.PORT || 5000;
+    server.listen({
+      port,
+      host: "0.0.0.0",
+      reusePort: true,
+    }, () => {
+      log(`serving on port ${port}`);
+    });
   } else {
     serveStatic(app);
+    
+    // In production on Vercel, we don't need to explicitly start the server
+    // as Vercel will handle that for us through the serverless function
+    if (process.env.VERCEL !== "1") {
+      // Only start the server if we're not on Vercel (e.g., other hosting)
+      const port = process.env.PORT || 5000;
+      server.listen({
+        port,
+        host: "0.0.0.0",
+        reusePort: true,
+      }, () => {
+        log(`serving on port ${port}`);
+      });
+    }
   }
-
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
 })();
+
+// Export the app for Vercel serverless functions
+export default app;
